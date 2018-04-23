@@ -8,7 +8,9 @@ import static org.junit.Assert.assertThat;
 
 public class BerlinClockBDDSteps {
 
-    private TimeConverter berlinClock;
+    // i don't know what's the cucumber's way to inject this dependency
+    // so i'm initializing it manually...
+    private TimeConverter berlinClock = new BerlinClockTimeConverter();
     private String time;
 
     @Given("^the time is (.*)$")
@@ -20,4 +22,5 @@ public class BerlinClockBDDSteps {
     public void theClockShouldLookLike(String expectedBerlinClockOutput) {
         assertThat(berlinClock.convertTime(time), is(expectedBerlinClockOutput));
     }
+
 }
